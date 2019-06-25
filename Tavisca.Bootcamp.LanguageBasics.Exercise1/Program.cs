@@ -23,7 +23,7 @@ namespace Tavisca.Bootcamp.LanguageBasics.Exercise1
         public static int FindDigit(string equation)
         {
             //Spliting the Equation.
-            String[] terms=equation.Split(new char[]{'*','='});
+            string[] terms=equation.Split(new char[]{'*','='});
 
             //Checking for the term with missing digit.
             int pos=-1;
@@ -42,11 +42,13 @@ namespace Tavisca.Bootcamp.LanguageBasics.Exercise1
                 bool ifSuccess1=int.TryParse(terms[1], out secondTerm);
                 bool ifSuccess2=int.TryParse(terms[2], out thirdTerm);
                 double tempMissingTerm=(double)thirdTerm/secondTerm;
-                String missingTerm=tempMissingTerm.ToString();
-                //(cc%1==0) to check if the term is decimal; Used mainly for Test 5 type of cases
+                string missingTerm=tempMissingTerm.ToString();
+                //(temoMissingTerm%1==0) to check if the term is decimal; Used mainly for Test 5 type of cases
                 if(missingTerm.Length==terms[0].Length&&(tempMissingTerm%1==0))
                 {
-                    return int.Parse(missingTerm[terms[0].IndexOf('?')].ToString());
+                    int missingDigit;
+                    bool ifSuccess3=int.TryParse(missingTerm[terms[0].IndexOf('?')].ToString(), out missingDigit);
+                    return missingDigit;
                 }
             }
             else if(pos==1)
@@ -54,11 +56,13 @@ namespace Tavisca.Bootcamp.LanguageBasics.Exercise1
                 bool ifSuccess1=int.TryParse(terms[0], out firstTerm);
                 bool ifSuccess2=int.TryParse(terms[2], out thirdTerm);
                 double tempMissingTerm=(double)thirdTerm/firstTerm;
-                String missingTerm=tempMissingTerm.ToString();
-                //(cc%1==0) to check if the term is decimal; Used mainly for Test 5 type of cases
+                string missingTerm=tempMissingTerm.ToString();
+                //(tempMissingTerm%1==0) to check if the term is decimal; Used mainly for Test 5 type of cases
                 if(missingTerm.Length==terms[1].Length&&(tempMissingTerm%1==0))
                 {
-                    return int.Parse(missingTerm[terms[1].IndexOf('?')].ToString());
+                    int missingDigit;
+                    bool ifSuccess3=int.TryParse(missingTerm[terms[1].IndexOf('?')].ToString(), out missingDigit);
+                    return missingDigit;
                 }
             }
             else if(pos==2)
@@ -66,10 +70,12 @@ namespace Tavisca.Bootcamp.LanguageBasics.Exercise1
                 bool ifSuccess1=int.TryParse(terms[0], out firstTerm);
                 bool ifSuccess2=int.TryParse(terms[1], out secondTerm);
                 thirdTerm=firstTerm*secondTerm;
-                String missingTerm=thirdTerm.ToString();
+                string missingTerm=thirdTerm.ToString();
                 if(missingTerm.Length==terms[2].Length)
                 {
-                    return int.Parse(missingTerm[terms[2].IndexOf('?')].ToString());
+                    int missingDigit;
+                    bool ifSuccess3=int.TryParse(missingTerm[terms[2].IndexOf('?')].ToString(), out missingDigit);
+                    return missingDigit;
                 }
             }
 
